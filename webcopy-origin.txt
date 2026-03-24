@@ -1,0 +1,436 @@
+Uri: https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\ajax\libs\webfont\1.6.26\webfont.js
+Content Type: text/javascript
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66a8c251d60310b7ebc88e6f_volunteer-icon.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66a8c251d60310b7ebc88e6f_volunteer-icon.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66a8c6020bced0d6da2a3d56_top-bar-contact-hover-1.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66a8c6020bced0d6da2a3d56_top-bar-contact-hover-1.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66a8c60275298754e10105c0_top-bar-contact-hover-2.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66a8c60275298754e10105c0_top-bar-contact-hover-2.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66a8c60281a565d5522e48e6_top-bar-contact-1.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66a8c60281a565d5522e48e6_top-bar-contact-1.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66a8c60287fc1c9e8918d0e8_top-bar-contact-2.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66a8c60287fc1c9e8918d0e8_top-bar-contact-2.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa0cf34487cd01d6d8422e_footer-contact-3.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa0cf34487cd01d6d8422e_footer-contact-3.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa0cf35c37cd3e48dce247_footer-contact-1.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa0cf35c37cd3e48dce247_footer-contact-1.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa0cf3654d1a9e036c4653_footer-social-3.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa0cf3654d1a9e036c4653_footer-social-3.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa0cf3dd8ee7b8fe47b06b_footer-social-2.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa0cf3dd8ee7b8fe47b06b_footer-social-2.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa0cf3e8620703336ce086_footer-contact-2.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa0cf3e8620703336ce086_footer-contact-2.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa0cf51f99cc20abddb909_footer-social-1.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa0cf51f99cc20abddb909_footer-social-1.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa24c0b18602d722713b2d_hero-wishlist-icon.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa24c0b18602d722713b2d_hero-wishlist-icon.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa26351b4ad1f35b46e137_charity-1.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa26351b4ad1f35b46e137_charity-1.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa2635730b76d3551aa5ea_charity-3.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa2635730b76d3551aa5ea_charity-3.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa2635dc005878de1f5489_charity-2.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa2635dc005878de1f5489_charity-2.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa29ba0e69338da4fd9db5_feature-card-2.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa29ba0e69338da4fd9db5_feature-card-2.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa2bcfbb4726f9fe8aef31_feature-card-1.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa2bcfbb4726f9fe8aef31_feature-card-1.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa2bcfff1efd369dc09107_feature-card-2.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa2bcfff1efd369dc09107_feature-card-2.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa2c9322d42f54a86c6d08_feature-card-3-bg.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa2c9322d42f54a86c6d08_feature-card-3-bg.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa2fc8b3249f85f4db96f7_about-home-1-p-500.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa2fc8b3249f85f4db96f7_about-home-1-p-500.jpg
+Content Type: image/jpg
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa2fc8b3249f85f4db96f7_about-home-1-p-800.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa2fc8b3249f85f4db96f7_about-home-1-p-800.jpg
+Content Type: image/jpg
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa2fc8b3249f85f4db96f7_about-home-1.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa2fc8b3249f85f4db96f7_about-home-1.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa3373598b229a68349496_about-card-1.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa3373598b229a68349496_about-card-1.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa33736d46898de0306020_about-card-2.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa33736d46898de0306020_about-card-2.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66aa3373fc896b5b0f4726cf_about-heart.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66aa3373fc896b5b0f4726cf_about-heart.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab1b0644d4ad0a6e79ff90_service-card-4.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab1b0644d4ad0a6e79ff90_service-card-4.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab1b06556b506c310c24d0_service-card-1.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab1b06556b506c310c24d0_service-card-1.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab1b07744496c0abe087a6_service-card-2.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab1b07744496c0abe087a6_service-card-2.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab38ae177d7cf5a6d9bcab_our-cases-image-1.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab38ae177d7cf5a6d9bcab_our-cases-image-1.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab57b181f9484bb74650df_video-cta-bg.png
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab57b181f9484bb74650df_video-cta-bg.png
+Content Type: image/png
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab5b76d786c1ac96bb139b_video-play-button.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab5b76d786c1ac96bb139b_video-play-button.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab5d7efa236340d9ce5597_video-icon.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab5d7efa236340d9ce5597_video-icon.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab62671e141e2ee6fb886b_event-icon-1.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab62671e141e2ee6fb886b_event-icon-1.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab62675f3562a5effe0d44_event-icon-2.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab62675f3562a5effe0d44_event-icon-2.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab6267f4d114a344151de8_event-icon-3.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab6267f4d114a344151de8_event-icon-3.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab641502bb6b59902ee21e_events-card-bg.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab641502bb6b59902ee21e_events-card-bg.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab64e86c9a9c7bbeb5b758_events-card-1.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab64e86c9a9c7bbeb5b758_events-card-1.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab6822dbcbcf91d5f9ff1e_testimonial-1.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab6822dbcbcf91d5f9ff1e_testimonial-1.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab69006d9d55896e9fa35e_testimonial-star.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab69006d9d55896e9fa35e_testimonial-star.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab69fdf9b9444ecd974606_testimonial-2.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab69fdf9b9444ecd974606_testimonial-2.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab6b72978e7d561ec077f6_testimonial-right-arrow.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab6b72978e7d561ec077f6_testimonial-right-arrow.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab6b72af55a6c056b3384d_testimonial-left-arrow.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab6b72af55a6c056b3384d_testimonial-left-arrow.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab72b76cf7fc2cc60c1dd8_blog-detail-icon-1.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab72b76cf7fc2cc60c1dd8_blog-detail-icon-1.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab78f3c0c2cacf4213f588_service-arrow-hover.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab78f3c0c2cacf4213f588_service-arrow-hover.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ab7d3afa236340d9e6f1c6_video-bg.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ab7d3afa236340d9e6f1c6_video-bg.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66ac7f7125e658bf49938938_video-cta.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66ac7f7125e658bf49938938_video-cta.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66b1d20fca5cb8e977333dc8_donation-amount.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66b1d20fca5cb8e977333dc8_donation-amount.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66b1e94ec5f8c23c974549fa_red-heart.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66b1e94ec5f8c23c974549fa_red-heart.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66b1f1020a97d6a536d8953c_cases-cta-bg.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66b1f1020a97d6a536d8953c_cases-cta-bg.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/66b20fc8675acb75992dfa57_blog-cta-bg.png
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\66b20fc8675acb75992dfa57_blog-cta-bg.png
+Content Type: image/png
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/6710ebcf526e8e587a26a0e5_banner-bg-p-500.png
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\6710ebcf526e8e587a26a0e5_banner-bg-p-500.png
+Content Type: image/png
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/6710ebcf526e8e587a26a0e5_banner-bg-p-800.png
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\6710ebcf526e8e587a26a0e5_banner-bg-p-800.png
+Content Type: image/png
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/6710ebcf526e8e587a26a0e5_banner-bg.png
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\6710ebcf526e8e587a26a0e5_banner-bg.png
+Content Type: image/png
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/6719b36b69791c5bc15edc74_block-quote-bg.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\6719b36b69791c5bc15edc74_block-quote-bg.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/6731efe8a614c399d6da7fb1_testimonial-4.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\6731efe8a614c399d6da7fb1_testimonial-4.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/6734e637104633f4506400b3_top-bar-social-hover-1.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\6734e637104633f4506400b3_top-bar-social-hover-1.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/6734e63760675dcc4031fd82_top-bar-social-hover-4.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\6734e63760675dcc4031fd82_top-bar-social-hover-4.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/6734e6377598599f9795b3e2_top-bar-social-hover-2.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\6734e6377598599f9795b3e2_top-bar-social-hover-2.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/6734e6377598599f9795b3e7_top-bar-social-initial-2.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\6734e6377598599f9795b3e7_top-bar-social-initial-2.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/6734e6378987963545534a42_top-bar-social-initial-4.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\6734e6378987963545534a42_top-bar-social-initial-4.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/6734e637ca6f87228aabff44_top-bar-social-hover-3.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\6734e637ca6f87228aabff44_top-bar-social-hover-3.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/6734e637cd6c295bf283a541_top-bar-social-initial-1.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\6734e637cd6c295bf283a541_top-bar-social-initial-1.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/6734e637f94cd4b5be9e6af2_top-bar-social-initial-3.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\6734e637f94cd4b5be9e6af2_top-bar-social-initial-3.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/6734e7b61a23865461843055_feature-cta-arrow.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\6734e7b61a23865461843055_feature-cta-arrow.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/674463ba3449cd3bfe70e0c1_contact-calender.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\674463ba3449cd3bfe70e0c1_contact-calender.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/67600ff7d4a7a7a69a787493_video-play-button-white.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\67600ff7d4a7a7a69a787493_video-play-button-white.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/676b851b20f18c880f11e909_feature-card-1.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\676b851b20f18c880f11e909_feature-card-1.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/676be79c31720bd3ab06cfcd_client-logo-2.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\676be79c31720bd3ab06cfcd_client-logo-2.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/676be79c456275e185ce0d10_client-logo-1.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\676be79c456275e185ce0d10_client-logo-1.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/676be79c617314e29629bdd4_client-logo-3.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\676be79c617314e29629bdd4_client-logo-3.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/676be79cb805ae57f1312ba8_client-logo-5.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\676be79cb805ae57f1312ba8_client-logo-5.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/676be79cb9a0a4b4dd306d39_client-logo-4.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\676be79cb9a0a4b4dd306d39_client-logo-4.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/676be79cd654a32ec18e7f2d_client-logo-6.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\676be79cd654a32ec18e7f2d_client-logo-6.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/676bed988327bebca3d85ba9_footer-social-4.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\676bed988327bebca3d85ba9_footer-social-4.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/676d2b293baaf56ad4734129_kindflowda-favicon.png
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\676d2b293baaf56ad4734129_kindflowda-favicon.png
+Content Type: image/png
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/676d2b2d216d58480f57161e_kindflowda-webclip.webp
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\676d2b2d216d58480f57161e_kindflowda-webclip.webp
+Content Type: image/webp
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/676d2c543a11a5b8cc0cb10b_brand-logo.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\676d2c543a11a5b8cc0cb10b_brand-logo.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/676d2c54981be77809b9cce8_footer-logo.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\676d2c54981be77809b9cce8_footer-logo.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/676e8caeefc3084795248484_service-card-3.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\676e8caeefc3084795248484_service-card-3.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/676f8eb23f517436925539e6_service-arrow-initial.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\676f8eb23f517436925539e6_service-arrow-initial.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/6789f7c73897af73561d53e1_more-template-badge.png
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\6789f7c73897af73561d53e1_more-template-badge.png
+Content Type: image/png
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/6789f7cd80f2ad2dcc6fdd61_buy-template-badge.png
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\6789f7cd80f2ad2dcc6fdd61_buy-template-badge.png
+Content Type: image/png
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/6789f7f2f5097da2038be69f_hireus-close-badge.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\6789f7f2f5097da2038be69f_hireus-close-badge.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/678b2d8c3098b1bb53ca4568_font-bg.png
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\678b2d8c3098b1bb53ca4568_font-bg.png
+Content Type: image/png
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/678b2d8c3098b1bb53ca456b_icon-bg.png
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\678b2d8c3098b1bb53ca456b_icon-bg.png
+Content Type: image/png
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/678b2d8c3098b1bb53ca4571_figma-bg.png
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\678b2d8c3098b1bb53ca4571_figma-bg.png
+Content Type: image/png
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/678b2d8c3098b1bb53ca459e_responsive-bg-text.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\678b2d8c3098b1bb53ca459e_responsive-bg-text.svg
+Content Type: image/svg+xml
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/css/kindflowda-template.webflow.33ae4aea2.css
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\css\kindflowda-template.webflow.33ae4aea2.css
+Content Type: text/css
+
+Uri: https://cdn.prod.website-files.com/66a8bc9010054ff044b7ed6b/js/webflow.e31069727cf82cf68055a06abda6d8dc.js
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66a8bc9010054ff044b7ed6b\js\webflow.e31069727cf82cf68055a06abda6d8dc.js
+Content Type: text/javascript
+
+Uri: https://cdn.prod.website-files.com/66acc64ed26f531b37ee854b/66b0be330961f66108450918_events-post-1-p-500.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66acc64ed26f531b37ee854b\66b0be330961f66108450918_events-post-1-p-500.jpg
+Content Type: image/jpg
+
+Uri: https://cdn.prod.website-files.com/66acc64ed26f531b37ee854b/66b0be330961f66108450918_events-post-1.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66acc64ed26f531b37ee854b\66b0be330961f66108450918_events-post-1.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66acc64ed26f531b37ee854b/66b1bd60a935eca24029322c_cases-post-2-p-500.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66acc64ed26f531b37ee854b\66b1bd60a935eca24029322c_cases-post-2-p-500.jpg
+Content Type: image/jpg
+
+Uri: https://cdn.prod.website-files.com/66acc64ed26f531b37ee854b/66b1bd60a935eca24029322c_cases-post-2.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66acc64ed26f531b37ee854b\66b1bd60a935eca24029322c_cases-post-2.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66acc64ed26f531b37ee854b/66b1bd6a24e4b7c5f23c3516_cases-post-3-p-500.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66acc64ed26f531b37ee854b\66b1bd6a24e4b7c5f23c3516_cases-post-3-p-500.jpg
+Content Type: image/jpg
+
+Uri: https://cdn.prod.website-files.com/66acc64ed26f531b37ee854b/66b1bd6a24e4b7c5f23c3516_cases-post-3.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66acc64ed26f531b37ee854b\66b1bd6a24e4b7c5f23c3516_cases-post-3.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66acc64ed26f531b37ee854b/66b1bd7304e48f3e20e65ff0_cases-post-4-p-500.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66acc64ed26f531b37ee854b\66b1bd7304e48f3e20e65ff0_cases-post-4-p-500.jpg
+Content Type: image/jpg
+
+Uri: https://cdn.prod.website-files.com/66acc64ed26f531b37ee854b/66b1bd7304e48f3e20e65ff0_cases-post-4.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66acc64ed26f531b37ee854b\66b1bd7304e48f3e20e65ff0_cases-post-4.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66acc64ed26f531b37ee854b/674d3476d3dd1eefa23cb785_blog-post-2-p-500.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66acc64ed26f531b37ee854b\674d3476d3dd1eefa23cb785_blog-post-2-p-500.jpg
+Content Type: image/jpg
+
+Uri: https://cdn.prod.website-files.com/66acc64ed26f531b37ee854b/674d3476d3dd1eefa23cb785_blog-post-2.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66acc64ed26f531b37ee854b\674d3476d3dd1eefa23cb785_blog-post-2.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66acc64ed26f531b37ee854b/674d34c50f6418ca959813aa_blog-post-3-p-500.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66acc64ed26f531b37ee854b\674d34c50f6418ca959813aa_blog-post-3-p-500.jpg
+Content Type: image/jpg
+
+Uri: https://cdn.prod.website-files.com/66acc64ed26f531b37ee854b/674d34c50f6418ca959813aa_blog-post-3.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66acc64ed26f531b37ee854b\674d34c50f6418ca959813aa_blog-post-3.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66acc64ed26f531b37ee854b/674d374f8d4f507a7370639b_events-post-2-p-500.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66acc64ed26f531b37ee854b\674d374f8d4f507a7370639b_events-post-2-p-500.jpg
+Content Type: image/jpg
+
+Uri: https://cdn.prod.website-files.com/66acc64ed26f531b37ee854b/674d374f8d4f507a7370639b_events-post-2.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66acc64ed26f531b37ee854b\674d374f8d4f507a7370639b_events-post-2.jpg
+Content Type: image/jpeg
+
+Uri: https://cdn.prod.website-files.com/66acc64ed26f531b37ee854b/6761523276cc59370598bea3_blog-post-feature-p-500.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66acc64ed26f531b37ee854b\6761523276cc59370598bea3_blog-post-feature-p-500.jpg
+Content Type: image/jpg
+
+Uri: https://cdn.prod.website-files.com/66acc64ed26f531b37ee854b/6761523276cc59370598bea3_blog-post-feature.jpg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\66acc64ed26f531b37ee854b\6761523276cc59370598bea3_blog-post-feature.jpg
+Content Type: image/jpeg
+
+Uri: https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=66a8bc9010054ff044b7ed6b
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\js\jquery-3.5.1.min.dc5e7f18c8.js
+Content Type: application/javascript
+
+Uri: https://d3e54v103j8qbb.cloudfront.net/static/custom-checkbox-checkmark.589d534424.svg
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\static\custom-checkbox-checkmark.589d534424.svg
+Content Type: image/svg+xml
+
+Uri: https://kindflowda-template.webflow.io/home
+File Name: C:\Users\deogr\Documents\HAFT\new website\webcopy\kindflowda-template.webflow.io\home.html
+Content Type: text/html
+
