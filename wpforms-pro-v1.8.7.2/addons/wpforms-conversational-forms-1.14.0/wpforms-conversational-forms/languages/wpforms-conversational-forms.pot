@@ -1,0 +1,222 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WPForms Conversational Forms 1.14.0\n"
+"Report-Msgid-Bugs-To: https://wpforms.com/support/\n"
+"Last-Translator: WPForms <support@wpforms.com>\n"
+"Language-Team: WPForms <support@wpforms.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-02-19T18:07:02+03:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.8.1\n"
+"X-Domain: wpforms-conversational-forms\n"
+
+#. Plugin Name of the plugin
+msgid "WPForms Conversational Forms"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://wpforms.com"
+msgstr ""
+
+#. Description of the plugin
+msgid "Create Conversational Forms with WPForms."
+msgstr ""
+
+#. Author of the plugin
+msgid "WPForms"
+msgstr ""
+
+#: src/Admin/Builder.php:61
+msgid "Conversational Forms cannot be enabled if Form Pages is enabled at the same time."
+msgstr ""
+
+#: src/Admin/Builder.php:62
+msgid "OK"
+msgstr ""
+
+#: src/Admin/Builder.php:63
+#: src/Admin/Builder.php:344
+#: src/Frontend.php:823
+msgid "Form Logo"
+msgstr ""
+
+#: src/Admin/Builder.php:64
+msgid "Select or Upload Form Custom Logo"
+msgstr ""
+
+#: src/Admin/Builder.php:65
+msgid "Use this media"
+msgstr ""
+
+#: src/Admin/Builder.php:66
+msgid "Conversational Forms cannot be enabled because your form contains a Layout field."
+msgstr ""
+
+#: src/Admin/Builder.php:110
+#: src/Admin/Builder.php:130
+msgid "Conversational Forms"
+msgstr ""
+
+#: src/Admin/Builder.php:133
+msgid "Preview Conversational Form"
+msgstr ""
+
+#. translators: %s - Permalink Settings page URL.
+#: src/Admin/Builder.php:145
+msgid "Heads up! To use Conversational Forms, please configure your site's permalinks on the WordPress <a href=\"%s\">Permalink Settings</a> page."
+msgstr ""
+
+#: src/Admin/Builder.php:165
+msgid "Enable Conversational Form Mode"
+msgstr ""
+
+#: src/Admin/Builder.php:175
+msgid "Conversational Form Title"
+msgstr ""
+
+#: src/Admin/Builder.php:183
+msgid "Message"
+msgstr ""
+
+#: src/Admin/Builder.php:188
+msgid "This content will display below the Conversational Form Title, above the form."
+msgstr ""
+
+#: src/Admin/Builder.php:197
+msgid "Permalink"
+msgstr ""
+
+#: src/Admin/Builder.php:203
+msgid "This is the URL for your Conversational Form."
+msgstr ""
+
+#: src/Admin/Builder.php:212
+msgid "Header Logo"
+msgstr ""
+
+#: src/Admin/Builder.php:217
+msgid "This is a custom logo displayed above the form title."
+msgstr ""
+
+#: src/Admin/Builder.php:226
+msgid "Hide WPForms Branding"
+msgstr ""
+
+#: src/Admin/Builder.php:236
+msgid "Color Scheme"
+msgstr ""
+
+#: src/Admin/Builder.php:240
+msgid "This is the color of the submit button and the page background."
+msgstr ""
+
+#: src/Admin/Builder.php:249
+msgid "Progress Bar"
+msgstr ""
+
+#: src/Admin/Builder.php:254
+msgid "Percentage"
+msgstr ""
+
+#: src/Admin/Builder.php:257
+msgid "Proportion"
+msgstr ""
+
+#: src/Admin/Builder.php:260
+msgid "This is a Progress Bar style."
+msgstr ""
+
+#: src/Admin/Builder.php:367
+msgid "Upload Image"
+msgstr ""
+
+#: src/Admin/Builder.php:390
+msgid "View"
+msgstr ""
+
+#: src/Admin/Overview.php:96
+msgid "View Conversational Form"
+msgstr ""
+
+#: src/Admin/Overview.php:97
+msgid "Conversational Form Preview"
+msgstr ""
+
+#: src/Frontend.php:379
+msgid "Type or select an option"
+msgstr ""
+
+#: src/Frontend.php:380
+msgid "No suggestions found"
+msgstr ""
+
+#: src/Frontend.php:381
+msgid "<strong>Enter</strong> to select option"
+msgstr ""
+
+#: src/Frontend.php:733
+msgid "Choose File"
+msgstr ""
+
+#: src/Frontend.php:736
+msgid "No file chosen"
+msgstr ""
+
+#: src/Frontend.php:755
+msgid "Loading..."
+msgstr ""
+
+#: src/Frontend.php:761
+#: src/Frontend.php:1042
+msgid "powered by"
+msgstr ""
+
+#: src/Frontend.php:795
+msgid "Start"
+msgstr ""
+
+#: src/Frontend.php:797
+#: src/Frontend.php:864
+msgid "press <strong>Enter</strong>"
+msgstr ""
+
+#: src/Frontend.php:862
+msgid "Done"
+msgstr ""
+
+#: src/Frontend.php:874
+msgid "<strong>Enter</strong> or <strong>&#x2B07;</strong> to go to the next field"
+msgstr ""
+
+#: src/Frontend.php:883
+msgid "<strong>Shift+Enter</strong> to make a line break"
+msgstr ""
+
+#: src/Frontend.php:892
+msgid "<strong>Tab</strong> or <strong>&#x2B07;</strong> to switch the line"
+msgstr ""
+
+#: src/Frontend.php:901
+msgid "<strong>Shift+Enter</strong> to open file"
+msgstr ""
+
+#: src/Frontend.php:910
+msgid "<strong>Shift+Enter</strong> to go to the next field"
+msgstr ""
+
+#. translators: %1$s - Number of fields completed; %2$s - Number of fields in total.
+#: src/Frontend.php:969
+msgid "%1$s of %2$s completed"
+msgstr ""
+
+#: src/Frontend.php:979
+msgid "Form completed"
+msgstr ""
+
+#. translators: %s - Percentage of fields completed.
+#: src/Frontend.php:996
+msgid "%s%% completed"
+msgstr ""

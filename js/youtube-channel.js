@@ -42,12 +42,17 @@ function isLocalHostname() {
   return h === "127.0.0.1" || h === "localhost" || h === "[::1]";
 }
 
-function isHaftYoutubeApiResponse(res, text) {
+/**
+ * Only treat **successful** HAFT-shaped JSON as our API during auto-discovery.
+ * A 403/500 body like `{ error: "…" }` must not match (it wrongly picked port 3000 when the key was referrer-only and Node had no Referer).
+ */
+function isHaftYoutubeApiProbeSuccess(res, text) {
+  if (!res.ok) return false;
   const ct = (res.headers.get("content-type") || "").toLowerCase();
   if (!ct.includes("json") && !/^\s*\{/.test(text)) return false;
   try {
     const j = JSON.parse(text);
-    return j != null && typeof j === "object" && ("videos" in j || "error" in j);
+    return j != null && typeof j === "object" && Array.isArray(j.videos);
   } catch {
     return false;
   }
@@ -59,7 +64,7 @@ async function fetchApiProbe(url, timeoutMs) {
   try {
     const r = await fetch(url, { signal: ctrl.signal });
     const text = await r.text();
-    return isHaftYoutubeApiResponse(r, text) ? r : null;
+    return isHaftYoutubeApiProbeSuccess(r, text) ? r : null;
   } catch {
     return null;
   } finally {
@@ -68,9 +73,14 @@ async function fetchApiProbe(url, timeoutMs) {
 }
 
 async function resolveApiRoot() {
-  const attr = document.body?.getAttribute("data-youtube-api-root");
-  if (attr !== null && attr.trim() !== "") {
-    return attr.trim().replace(/\/$/, "");
+  const root = document.body?.dataset?.youtubeApiRoot?.trim() ?? "";
+  if (root !== "") {
+    return root.replace(/\/$/, "");
+  }
+
+  /** Browser loads YouTube directly — no /api/videos discovery (avoids 26× localhost probes + 404 on Live Server). */
+  if (shouldUseBrowserYoutubeFirst()) {
+    return "";
   }
 
   if (resolveApiRootPromise) {
@@ -88,6 +98,12 @@ async function resolveApiRoot() {
     }
 
     if (!isLocalHostname()) {
+      return "";
+    }
+
+    /** Live Server, Vite preview, etc. — same-origin already failed; don’t scan 3000–3025. */
+    const skipLocalhostScan = /:(5500|8080|8000|5173|4173|8888)\b/.test(origin || "");
+    if (skipLocalhostScan) {
       return "";
     }
 
@@ -111,15 +127,82 @@ async function apiVideosUrl() {
   return root ? `${root}${path}` : path;
 }
 
+/** Optional: set before this module runs, e.g. inline script or a small `youtube-site-config.js` you do not commit. */
+function readSiteYoutubeConfig() {
+  return typeof window !== "undefined" && window.HAFT_YOUTUBE_CONFIG
+    ? window.HAFT_YOUTUBE_CONFIG
+    : null;
+}
+
+function getYoutubeApiKey() {
+  const cfg = readSiteYoutubeConfig();
+  const fromCfg = cfg && typeof cfg.apiKey === "string" ? cfg.apiKey.trim() : "";
+  if (fromCfg) return fromCfg;
+  return document.body?.dataset?.youtubeApiKey?.trim() || "";
+}
+
+function getYoutubeChannelId() {
+  const cfg = readSiteYoutubeConfig();
+  const fromCfg = cfg && typeof cfg.channelId === "string" ? cfg.channelId.trim() : "";
+  if (fromCfg) return fromCfg;
+  return document.body?.dataset?.youtubeChannelId?.trim() || "";
+}
+
+function getYoutubeChannelHandle() {
+  const cfg = readSiteYoutubeConfig();
+  const fromCfg = cfg && typeof cfg.channelHandle === "string" ? cfg.channelHandle.trim() : "";
+  if (fromCfg) return fromCfg.replace(/^@/, "");
+  const h = document.body?.dataset?.youtubeChannelHandle?.trim() || "";
+  return h.replace(/^@/, "");
+}
+
 function canUseClientYoutube() {
-  const key = document.body?.getAttribute("data-youtube-api-key")?.trim();
-  const id = document.body?.getAttribute("data-youtube-channel-id")?.trim();
-  const handle = document.body?.getAttribute("data-youtube-channel-handle")?.trim();
+  const key = getYoutubeApiKey();
+  const id = getYoutubeChannelId();
+  const handle = getYoutubeChannelHandle();
   return Boolean(key && (id || handle));
 }
 
+/** True when <body> sets a real API base URL (try server first; do not skip to browser). */
+function usesExplicitApiRoot() {
+  const v = document.body?.dataset?.youtubeApiRoot?.trim() ?? "";
+  return v !== "";
+}
+
+/** On static hosts, load from YouTube immediately instead of waiting on missing /api/videos. */
+function shouldUseBrowserYoutubeFirst() {
+  return canUseClientYoutube() && !usesExplicitApiRoot();
+}
+
+function getFetchTimeoutMs() {
+  const n = parseInt(String(document.body?.dataset?.youtubeTimeoutMs || "20000"), 10);
+  return Math.min(120000, Math.max(5000, Number.isFinite(n) ? n : 20000));
+}
+
+/**
+ * @param {string} url
+ * @param {RequestInit} [init]
+ * @param {number} [ms]
+ */
+async function fetchWithTimeout(url, init = {}, ms) {
+  const timeout = ms ?? getFetchTimeoutMs();
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), timeout);
+  try {
+    return await fetch(url, { ...init, signal: ctrl.signal });
+  } catch (e) {
+    const name = /** @type {{ name?: string }} */ (e)?.name;
+    if (name === "AbortError") {
+      throw new Error(`Request timed out after ${Math.round(timeout / 1000)}s`);
+    }
+    throw e;
+  } finally {
+    clearTimeout(t);
+  }
+}
+
 function getClientMaxResults() {
-  const n = parseInt(String(document.body?.getAttribute("data-youtube-max-results") || "12"), 10);
+  const n = parseInt(String(document.body?.dataset?.youtubeMaxResults || "12"), 10);
   return Math.min(50, Math.max(1, Number.isFinite(n) ? n : 12));
 }
 
@@ -131,12 +214,11 @@ let clientChannelLoadPromise = null;
  */
 
 async function loadClientChannelContext() {
-  const apiKey = document.body?.getAttribute("data-youtube-api-key")?.trim();
-  const channelId = document.body?.getAttribute("data-youtube-channel-id")?.trim();
-  const handleRaw = document.body?.getAttribute("data-youtube-channel-handle")?.trim();
-  const handle = handleRaw ? handleRaw.replace(/^@/, "") : "";
+  const apiKey = getYoutubeApiKey();
+  const channelId = getYoutubeChannelId();
+  const handle = getYoutubeChannelHandle();
   if (!apiKey || (!channelId && !handle)) {
-    throw new Error("Missing data-youtube-api-key and channel id or handle on <body>");
+    throw new Error("Missing YouTube API key and channel id or handle (body data-* or window.HAFT_YOUTUBE_CONFIG)");
   }
   const u = new URL("https://www.googleapis.com/youtube/v3/channels");
   u.searchParams.set("part", "snippet,contentDetails,statistics");
@@ -144,7 +226,7 @@ async function loadClientChannelContext() {
   if (channelId) u.searchParams.set("id", channelId);
   else u.searchParams.set("forHandle", handle);
 
-  const r = await fetch(u.toString(), { headers: { Accept: "application/json" } });
+  const r = await fetchWithTimeout(u.toString(), { headers: { Accept: "application/json" } });
   const data = await r.json().catch(() => ({}));
   if (!r.ok) {
     const msg = data.error?.message || data.error_description || r.statusText || "YouTube channels API error";
@@ -229,7 +311,17 @@ async function enrichVideosClient(videos, apiKey) {
   u.searchParams.set("part", "snippet,contentDetails,statistics");
   u.searchParams.set("id", ids.join(","));
   u.searchParams.set("key", apiKey);
-  const r = await fetch(u.toString(), { headers: { Accept: "application/json" } });
+  let r;
+  try {
+    r = await fetchWithTimeout(u.toString(), { headers: { Accept: "application/json" } });
+  } catch {
+    return videos.map((v) => ({
+      ...v,
+      durationSeconds: null,
+      viewCount: null,
+      liveBroadcastContent: "none",
+    }));
+  }
   const data = await r.json().catch(() => ({}));
   if (!r.ok) {
     return videos.map((v) => ({
@@ -275,7 +367,7 @@ async function fetchPageFromYouTubeApi(pageToken) {
   u.searchParams.set("key", ctx.apiKey);
   if (pageToken) u.searchParams.set("pageToken", pageToken);
 
-  const r = await fetch(u.toString(), { headers: { Accept: "application/json" } });
+  const r = await fetchWithTimeout(u.toString(), { headers: { Accept: "application/json" } });
   const text = await r.text();
   let data = {};
   try {
@@ -629,23 +721,47 @@ async function buildVideosFetchUrl(pageToken) {
   return u.toString();
 }
 
-async function fetchPage(pageToken) {
+async function fetchPageFromServer(pageToken) {
+  const res = await fetchWithTimeout(await buildVideosFetchUrl(pageToken), {
+    headers: { Accept: "application/json" },
+  });
+  const text = await res.text();
+  const trimmed = text.trim();
+  if (!trimmed.startsWith("{") && !trimmed.startsWith("[")) {
+    throw new Error(
+      "This host has no /api/videos (Live Server and most static hosts return HTML 404 here). Add data-youtube-api-key plus data-youtube-channel-id or data-youtube-channel-handle on <body>, or run npm run serve from the project root.",
+    );
+  }
+  let data = {};
   try {
-    const res = await fetch(await buildVideosFetchUrl(pageToken), {
-      headers: { Accept: "application/json" },
-    });
-    const text = await res.text();
-    let data = {};
+    data = trimmed ? JSON.parse(trimmed) : {};
+  } catch {
+    throw new Error(
+      "Invalid JSON from /api/videos. Add data-youtube-api-key + channel on <body>, or run npm run serve.",
+    );
+  }
+  if (!res.ok) {
+    const err = data.error || data.message || res.statusText;
+    throw new Error(typeof err === "string" ? err : JSON.stringify(err));
+  }
+  return data;
+}
+
+async function fetchPage(pageToken) {
+  if (shouldUseBrowserYoutubeFirst()) {
     try {
-      data = text ? JSON.parse(text) : {};
-    } catch {
-      throw new Error((text && text.slice(0, 160)) || res.statusText);
+      return await fetchPageFromYouTubeApi(pageToken);
+    } catch (clientErr) {
+      console.warn("[YouTube] Browser API failed, trying site /api/videos:", clientErr);
+      try {
+        return await fetchPageFromServer(pageToken);
+      } catch {
+        throw clientErr;
+      }
     }
-    if (!res.ok) {
-      const err = data.error || data.message || res.statusText;
-      throw new Error(typeof err === "string" ? err : JSON.stringify(err));
-    }
-    return data;
+  }
+  try {
+    return await fetchPageFromServer(pageToken);
   } catch (e) {
     if (canUseClientYoutube()) {
       return fetchPageFromYouTubeApi(pageToken);
@@ -681,11 +797,15 @@ async function loadInitial() {
     loadMoreBtn.hidden = !nextPageToken;
   } catch (e) {
     console.error(e);
-    setStatus("");
+    setStatus("Videos could not be loaded.");
     renderGrid();
     loadMoreBtn.hidden = true;
     if (hintEl) {
-      if (canUseClientYoutube()) {
+      const msg = e instanceof Error ? e.message : String(e);
+      if (/referer|referrer/i.test(msg)) {
+        hintEl.innerHTML =
+          "<strong>Google blocked your key (referer).</strong> A key restricted to <em>HTTP referrers</em> only works in the <strong>browser</strong>—put it in <code>data-youtube-api-key</code> (and channel id/handle) on <code>&lt;body&gt;</code> so this page calls YouTube directly, and leave <code>data-youtube-api-root</code> empty. For <code>server.js</code> / <code>/api/videos</code>, use a <strong>separate</strong> key with <strong>no</strong> referrer restriction (or IP restriction), because Node sends no browser referer.";
+      } else if (canUseClientYoutube()) {
         hintEl.innerHTML =
           "YouTube returned an error. Check that <code>data-youtube-api-key</code> and your channel id/handle are correct, YouTube Data API v3 is enabled for the key, and the key’s HTTP referrer restriction includes this site’s URL.";
       } else {

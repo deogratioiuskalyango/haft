@@ -29,6 +29,7 @@ const FILE_TO_ACTIVE = {
   "donation.html": "donation",
   "empower-women-sanitary-pad-project.html": "donation",
   "fundraise.html": "fundraise",
+  "youtube.html": "youtube",
   "event-detail.html": "events",
   "cause-clean-water.html": "causes",
   "donation-policy.html": "donation-policy",
@@ -106,6 +107,19 @@ function applyActive(html, active, { homePath, pagePrefix }) {
       re,
       `<a href="${href}" aria-current="page" class="nav-dropdown-link w-dropdown-link w--current">${label}</a>`,
       `sync-layout: dropdown link not found: ${label} (${href})`,
+    );
+  };
+
+  const navYoutubeCta = (h) => {
+    const href = `${pagePrefix}youtube.html`;
+    const re = new RegExp(
+      `<a\\s+href="${reEsc(href)}"\\s+class="secondary-button pd-35 w-button nav-cta-youtube"\\s*>\\s*YouTube\\s*</a\\s*>`,
+    );
+    return replaceFirst(
+      h,
+      re,
+      `<a href="${href}" aria-current="page" class="secondary-button pd-35 w-button nav-cta-youtube w--current">YouTube</a>`,
+      `sync-layout: YouTube CTA not found`,
     );
   };
 
@@ -192,6 +206,9 @@ function applyActive(html, active, { homePath, pagePrefix }) {
   } else if (active === "fundraise") {
     html = navDrop(html, "fundraise.html", "Fundraise");
     html = footLink(html, "fundraise.html", "Fundraise");
+  } else if (active === "youtube") {
+    html = navDrop(html, "youtube.html", "YouTube");
+    html = navYoutubeCta(html);
   } else if (active === "volunteers") {
     html = navDrop(html, "volunteers.html", "Volunteers");
     html = footLink(html, "volunteers.html", "Volunteers");

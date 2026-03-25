@@ -19,3 +19,6 @@ Desktop.ini
 .env.local
 .env.*.local
 *client_secret*.json
+
+# YouTube browser API key for static hosting (copy from youtube-site-config.sample.js)
+js/youtube-site-config.js

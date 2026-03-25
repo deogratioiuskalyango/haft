@@ -1,0 +1,169 @@
+# Copyright (C) 2023 WPForms Post Submissions
+# This file is distributed under the same license as the WPForms Post Submissions package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WPForms Post Submissions\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: WPForms <support@wpforms.com>\n"
+"POT-Creation-Date: 2023-08-07 18:36+0000\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: class-post-submissions-template.php:25, src/Template.php:21
+msgid "Blog Post Submission Form"
+msgstr ""
+
+#: class-post-submissions-template.php:27, src/Template.php:23
+msgid "User-submitted content made easy. Allow your users to submit guest blog posts in WordPress. You can add and remove fields as needed."
+msgstr ""
+
+#: class-post-submissions-template.php:32, src/Template.php:29
+msgid "Don&#39;t Forget"
+msgstr ""
+
+#: class-post-submissions-template.php:33, src/Template.php:30
+msgid "Additional post submission options are available in the settings panel."
+msgstr ""
+
+#: class-post-submissions-template.php:41, src/Template.php:39
+msgid "Author Details"
+msgstr ""
+
+#: class-post-submissions-template.php:42, src/Template.php:40
+msgid "Please enter your contact details, so we can give you proper credit for this blog post."
+msgstr ""
+
+#: class-post-submissions-template.php:48, src/Template.php:46
+msgid "Name"
+msgstr ""
+
+#: class-post-submissions-template.php:56, src/Template.php:54
+msgid "Email"
+msgstr ""
+
+#: class-post-submissions-template.php:63, src/Template.php:61
+msgid "Short Author Bio"
+msgstr ""
+
+#: class-post-submissions-template.php:64, src/Template.php:62
+msgid "Please keep it below 300 characters."
+msgstr ""
+
+#: class-post-submissions-template.php:71, src/Template.php:69
+msgid "Create a Blog Post"
+msgstr ""
+
+#: class-post-submissions-template.php:72, src/Template.php:70
+msgid "Please submit your guest blog posts by using the fields below."
+msgstr ""
+
+#: class-post-submissions-template.php:78, class-post-submissions.php:492, src/Plugin.php:527, src/Template.php:76
+msgid "Post Title"
+msgstr ""
+
+#: class-post-submissions-template.php:85, class-post-submissions.php:505, src/Plugin.php:540, src/Template.php:83
+msgid "Post Content"
+msgstr ""
+
+#: class-post-submissions-template.php:93, src/Template.php:91
+msgid "Featured Image"
+msgstr ""
+
+#: class-post-submissions-template.php:94, src/Template.php:92
+msgid "Please make sure the dimensions are (600 x 300px)."
+msgstr ""
+
+#: class-post-submissions-template.php:103, class-post-submissions.php:518, src/Plugin.php:553, src/Template.php:101
+msgid "Post Excerpt"
+msgstr ""
+
+#: class-post-submissions-template.php:110, src/Template.php:108
+msgid "Category"
+msgstr ""
+
+#: class-post-submissions-template.php:113, src/Template.php:111
+msgid "First Choice"
+msgstr ""
+
+#: class-post-submissions-template.php:127, src/Template.php:125
+msgid "Submit"
+msgstr ""
+
+#: class-post-submissions-template.php:128, src/Template.php:126
+msgid "Sending..."
+msgstr ""
+
+#: class-post-submissions.php:445, class-post-submissions.php:465, src/Plugin.php:480, src/Plugin.php:500
+msgid "Post Submissions"
+msgstr ""
+
+#: class-post-submissions.php:470, src/Plugin.php:505
+msgid "View Post Submissions addon documentation"
+msgstr ""
+
+#: class-post-submissions.php:481, src/Plugin.php:516
+msgid "Enable Post Submissions"
+msgstr ""
+
+#: class-post-submissions.php:495, class-post-submissions.php:508, class-post-submissions.php:521, class-post-submissions.php:534, class-post-submissions.php:622, src/Plugin.php:530, src/Plugin.php:543, src/Plugin.php:556, src/Plugin.php:569, src/Plugin.php:662
+msgid "--- Select Field ---"
+msgstr ""
+
+#: class-post-submissions.php:531, src/Plugin.php:566
+msgid "Post Featured Image"
+msgstr ""
+
+#: class-post-submissions.php:552, src/Plugin.php:589
+msgid "Post Type"
+msgstr ""
+
+#: class-post-submissions.php:565, src/Plugin.php:602
+msgid "Post Status"
+msgstr ""
+
+#: class-post-submissions.php:567, src/Plugin.php:604
+msgid "Select the default status used for new posts."
+msgstr ""
+
+#: class-post-submissions.php:581, src/Plugin.php:620
+msgid "Current User"
+msgstr ""
+
+#: class-post-submissions.php:595, src/Plugin.php:634
+msgid "Post Author"
+msgstr ""
+
+#: class-post-submissions.php:597, src/Plugin.php:636
+msgid "Select the post author used for new posts. Selecting Current User will use the current WordPress user that submits the form."
+msgstr ""
+
+#: class-post-submissions.php:599, src/Plugin.php:638
+msgid "--- Select User ---"
+msgstr ""
+
+#: class-post-submissions.php:605, src/Plugin.php:644
+msgid "Custom Post Meta"
+msgstr ""
+
+#: class-post-submissions.php:617, src/Plugin.php:657
+msgid "Enter meta key..."
+msgstr ""
+
+#. translators: %d - field ID.
+#: class-post-submissions.php:629, src/Plugin.php:669
+msgid "Field #%d"
+msgstr ""
+
+#: src/Plugin.php:137
+msgid "Some of the Field Options for the selected field will be disabled to prevent changes as long as the field is being used as the Post Featured Image."
+msgstr ""
+
+#: src/Plugin.php:139
+msgid "This field is being used to upload the Post Featured Image. Some Field Options cannot be changed. You can change the Post Featured Image upload field by going to <strong>Settings » Post Submissions.</strong>"
+msgstr ""

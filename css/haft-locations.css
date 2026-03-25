@@ -1,3 +1,11 @@
+/* HAFT — nav CTAs (YouTube + Donate) */
+.nav-button-wrap {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 12px;
+}
+
 /* HAFT — dual-location addresses (footer + contact page) */
 
 .footer-contact-content-area:has(.site-address-block) {

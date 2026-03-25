@@ -1,0 +1,158 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WPForms Form Pages 1.9.0\n"
+"Report-Msgid-Bugs-To: https://wpforms.com/support/\n"
+"Last-Translator: WPForms <support@wpforms.com>\n"
+"Language-Team: WPForms <support@wpforms.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-02-22T13:34:15+03:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.8.1\n"
+"X-Domain: wpforms-form-pages\n"
+
+#. Plugin Name of the plugin
+msgid "WPForms Form Pages"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://wpforms.com"
+msgstr ""
+
+#. Description of the plugin
+msgid "Create Form Pages with WPForms."
+msgstr ""
+
+#. Author of the plugin
+msgid "WPForms"
+msgstr ""
+
+#: src/Admin/Builder.php:60
+msgid "Form Pages cannot be enabled if Conversational Forms is enabled at the same time."
+msgstr ""
+
+#: src/Admin/Builder.php:61
+msgid "OK"
+msgstr ""
+
+#: src/Admin/Builder.php:62
+#: src/Admin/Builder.php:355
+#: src/Frontend.php:403
+msgid "Form Logo"
+msgstr ""
+
+#: src/Admin/Builder.php:63
+msgid "Select or Upload Form Custom Logo"
+msgstr ""
+
+#: src/Admin/Builder.php:64
+msgid "Use this image"
+msgstr ""
+
+#: src/Admin/Builder.php:108
+#: src/Admin/Builder.php:128
+msgid "Form Pages"
+msgstr ""
+
+#: src/Admin/Builder.php:131
+msgid "Preview Form Page"
+msgstr ""
+
+#. translators: %s - Permalink Settings page URL.
+#: src/Admin/Builder.php:143
+msgid "Heads up! To use Form Pages, please configure your site's permalinks on the WordPress <a href=\"%s\">Permalink Settings</a> page."
+msgstr ""
+
+#: src/Admin/Builder.php:163
+msgid "Enable Form Page Mode"
+msgstr ""
+
+#: src/Admin/Builder.php:173
+msgid "Form Page Title"
+msgstr ""
+
+#: src/Admin/Builder.php:181
+msgid "Message"
+msgstr ""
+
+#: src/Admin/Builder.php:186
+msgid "This content will be displayed below the Form Page Title, above the form."
+msgstr ""
+
+#: src/Admin/Builder.php:195
+msgid "Permalink"
+msgstr ""
+
+#: src/Admin/Builder.php:201
+msgid "This is the URL for your form page."
+msgstr ""
+
+#: src/Admin/Builder.php:210
+msgid "Header Logo"
+msgstr ""
+
+#: src/Admin/Builder.php:215
+msgid "This is a custom logo."
+msgstr ""
+
+#: src/Admin/Builder.php:224
+msgid "Footer Text"
+msgstr ""
+
+#: src/Admin/Builder.php:226
+msgid "This content is neither created nor endorsed by WPForms."
+msgstr ""
+
+#: src/Admin/Builder.php:235
+msgid "Hide WPForms Branding"
+msgstr ""
+
+#: src/Admin/Builder.php:245
+msgid "Color Scheme"
+msgstr ""
+
+#: src/Admin/Builder.php:249
+msgid "This is color of the submit button and page background."
+msgstr ""
+
+#: src/Admin/Builder.php:258
+msgid "Style"
+msgstr ""
+
+#: src/Admin/Builder.php:264
+msgid "Modern Design"
+msgstr ""
+
+#: src/Admin/Builder.php:268
+msgid "Classic Design"
+msgstr ""
+
+#: src/Admin/Builder.php:271
+msgid "Modern: Wider form, rounded corners, darker background"
+msgstr ""
+
+#: src/Admin/Builder.php:271
+msgid "Classic: Narrower form, square corners, lighter background"
+msgstr ""
+
+#: src/Admin/Builder.php:378
+msgid "Upload Image"
+msgstr ""
+
+#: src/Admin/Builder.php:401
+msgid "View"
+msgstr ""
+
+#: src/Admin/Overview.php:98
+msgid "View Form Page"
+msgstr ""
+
+#: src/Admin/Overview.php:99
+msgid "Form Page Preview"
+msgstr ""
+
+#: src/Frontend.php:466
+msgid "created with"
+msgstr ""
