@@ -57,7 +57,7 @@ function pesapalConfigured() {
   return Boolean(PESAPAL_CONSUMER_KEY && PESAPAL_CONSUMER_SECRET && PESAPAL_CALLBACK_URL);
 }
 
-/** @type {{ uploadsPlaylistId: string, channelTitle: string, channelId: string, at: number } | null} */
+/** @type {{ uploadsPlaylistId: string, channelTitle: string, channelId: string, channelThumbUrl: string, subscriberCount: number | null, at: number } | null} */
 let channelCache = null;
 /** @type {Map<string, { at: number, body: object }>} */
 const pageCache = new Map();
@@ -150,22 +150,32 @@ async function fetchJson(url, init = {}) {
   return data;
 }
 
+function channelThumbFromSnippet(snippet) {
+  const t = snippet?.thumbnails || {};
+  return t.high?.url || t.medium?.url || t.default?.url || "";
+}
+
 async function resolveUploadsPlaylistId() {
   if (channelCache && Date.now() - channelCache.at < CACHE_MS) {
     return {
       uploadsPlaylistId: channelCache.uploadsPlaylistId,
       channelTitle: channelCache.channelTitle,
       channelId: channelCache.channelId,
+      channelThumbUrl: channelCache.channelThumbUrl || "",
+      subscriberCount: channelCache.subscriberCount ?? null,
     };
   }
 
   let channelTitle = "";
   let uploadsPlaylistId = "";
   let resolvedChannelId = "";
+  let channelThumbUrl = "";
+  /** @type {number | null} */
+  let subscriberCount = null;
 
   if (CHANNEL_ID) {
     const data = await youtubeRequest("channels", {
-      part: "snippet,contentDetails",
+      part: "snippet,contentDetails,statistics",
       id: CHANNEL_ID,
     });
     const ch = data.items?.[0];
@@ -173,10 +183,14 @@ async function resolveUploadsPlaylistId() {
     resolvedChannelId = ch.id || CHANNEL_ID;
     channelTitle = ch.snippet?.title || "";
     uploadsPlaylistId = ch.contentDetails?.relatedPlaylists?.uploads || "";
+    channelThumbUrl = channelThumbFromSnippet(ch.snippet);
+    const sc = ch.statistics?.subscriberCount;
+    subscriberCount = sc != null && sc !== "" ? parseInt(String(sc), 10) : null;
+    if (Number.isNaN(subscriberCount)) subscriberCount = null;
   } else if (CHANNEL_HANDLE) {
     const handle = CHANNEL_HANDLE.replace(/^@/, "");
     const data = await youtubeRequest("channels", {
-      part: "snippet,contentDetails",
+      part: "snippet,contentDetails,statistics",
       forHandle: handle,
     });
     const ch = data.items?.[0];
@@ -184,14 +198,31 @@ async function resolveUploadsPlaylistId() {
     resolvedChannelId = ch.id || "";
     channelTitle = ch.snippet?.title || "";
     uploadsPlaylistId = ch.contentDetails?.relatedPlaylists?.uploads || "";
+    channelThumbUrl = channelThumbFromSnippet(ch.snippet);
+    const sc = ch.statistics?.subscriberCount;
+    subscriberCount = sc != null && sc !== "" ? parseInt(String(sc), 10) : null;
+    if (Number.isNaN(subscriberCount)) subscriberCount = null;
   } else {
     throw new Error("Set YOUTUBE_CHANNEL_ID or YOUTUBE_CHANNEL_HANDLE in .env");
   }
 
   if (!uploadsPlaylistId) throw new Error("Could not resolve uploads playlist for this channel");
 
-  channelCache = { uploadsPlaylistId, channelTitle, channelId: resolvedChannelId, at: Date.now() };
-  return { uploadsPlaylistId, channelTitle, channelId: resolvedChannelId };
+  channelCache = {
+    uploadsPlaylistId,
+    channelTitle,
+    channelId: resolvedChannelId,
+    channelThumbUrl,
+    subscriberCount,
+    at: Date.now(),
+  };
+  return {
+    uploadsPlaylistId,
+    channelTitle,
+    channelId: resolvedChannelId,
+    channelThumbUrl,
+    subscriberCount,
+  };
 }
 
 function normalizeVideos(items) {
@@ -211,6 +242,57 @@ function normalizeVideos(items) {
       };
     })
     .filter((v) => v.id);
+}
+
+/** @param {string | undefined} iso */
+function parseIso8601DurationSeconds(iso) {
+  if (!iso || typeof iso !== "string") return null;
+  const m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  if (!m) return null;
+  const h = parseInt(m[1] || "0", 10);
+  const min = parseInt(m[2] || "0", 10);
+  const s = parseInt(m[3] || "0", 10);
+  return h * 3600 + min * 60 + s;
+}
+
+/**
+ * Adds duration, view count, and live/upcoming flags (one videos.list per page).
+ * @param {ReturnType<typeof normalizeVideos>} videos
+ */
+async function enrichVideosWithDetails(videos) {
+  const ids = videos.map((v) => v.id).filter(Boolean);
+  if (ids.length === 0) return videos;
+
+  const data = await youtubeRequest("videos", {
+    part: "snippet,contentDetails,statistics",
+    id: ids.join(","),
+  });
+  const byId = new Map();
+  for (const item of data.items || []) {
+    byId.set(item.id, item);
+  }
+
+  return videos.map((v) => {
+    const item = byId.get(v.id);
+    if (!item) {
+      return {
+        ...v,
+        durationSeconds: null,
+        viewCount: null,
+        liveBroadcastContent: "none",
+      };
+    }
+    const cd = item.contentDetails || {};
+    const st = item.statistics || {};
+    const sn = item.snippet || {};
+    const vc = st.viewCount;
+    return {
+      ...v,
+      durationSeconds: parseIso8601DurationSeconds(cd.duration),
+      viewCount: vc != null && vc !== "" ? parseInt(String(vc), 10) : null,
+      liveBroadcastContent: sn.liveBroadcastContent || "none",
+    };
+  });
 }
 
 app.get("/api/pesapal/status", (req, res) => {
@@ -338,17 +420,21 @@ app.get("/api/videos", async (req, res) => {
   }
 
   try {
-    const { uploadsPlaylistId, channelTitle, channelId } = await resolveUploadsPlaylistId();
+    const { uploadsPlaylistId, channelTitle, channelId, channelThumbUrl, subscriberCount } =
+      await resolveUploadsPlaylistId();
     const data = await youtubeRequest("playlistItems", {
       part: "snippet,contentDetails",
       playlistId: uploadsPlaylistId,
       maxResults: String(maxResults),
       pageToken: pageToken || undefined,
     });
-    const videos = normalizeVideos(data.items);
+    let videos = normalizeVideos(data.items);
+    videos = await enrichVideosWithDetails(videos);
     const body = {
       channelTitle,
       channelId: channelId || null,
+      channelThumbUrl: channelThumbUrl || null,
+      subscriberCount: subscriberCount ?? null,
       videos,
       nextPageToken: data.nextPageToken || null,
     };
