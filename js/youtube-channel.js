@@ -111,6 +111,194 @@ async function apiVideosUrl() {
   return root ? `${root}${path}` : path;
 }
 
+function canUseClientYoutube() {
+  const key = document.body?.getAttribute("data-youtube-api-key")?.trim();
+  const id = document.body?.getAttribute("data-youtube-channel-id")?.trim();
+  const handle = document.body?.getAttribute("data-youtube-channel-handle")?.trim();
+  return Boolean(key && (id || handle));
+}
+
+function getClientMaxResults() {
+  const n = parseInt(String(document.body?.getAttribute("data-youtube-max-results") || "12"), 10);
+  return Math.min(50, Math.max(1, Number.isFinite(n) ? n : 12));
+}
+
+/** @type {Promise<ClientChannelContext> | null} */
+let clientChannelLoadPromise = null;
+
+/**
+ * @typedef {{ apiKey: string, uploadsPlaylistId: string, channelId: string | null, channelTitle: string | null, channelThumbUrl: string | null, subscriberCount: number | null }} ClientChannelContext
+ */
+
+async function loadClientChannelContext() {
+  const apiKey = document.body?.getAttribute("data-youtube-api-key")?.trim();
+  const channelId = document.body?.getAttribute("data-youtube-channel-id")?.trim();
+  const handleRaw = document.body?.getAttribute("data-youtube-channel-handle")?.trim();
+  const handle = handleRaw ? handleRaw.replace(/^@/, "") : "";
+  if (!apiKey || (!channelId && !handle)) {
+    throw new Error("Missing data-youtube-api-key and channel id or handle on <body>");
+  }
+  const u = new URL("https://www.googleapis.com/youtube/v3/channels");
+  u.searchParams.set("part", "snippet,contentDetails,statistics");
+  u.searchParams.set("key", apiKey);
+  if (channelId) u.searchParams.set("id", channelId);
+  else u.searchParams.set("forHandle", handle);
+
+  const r = await fetch(u.toString(), { headers: { Accept: "application/json" } });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) {
+    const msg = data.error?.message || data.error_description || r.statusText || "YouTube channels API error";
+    throw new Error(typeof msg === "string" ? msg : JSON.stringify(msg));
+  }
+  const ch = data.items?.[0];
+  if (!ch) {
+    throw new Error("Channel not found. Check data-youtube-channel-id or data-youtube-channel-handle.");
+  }
+  const uploadsPlaylistId = ch.contentDetails?.relatedPlaylists?.uploads;
+  if (!uploadsPlaylistId) {
+    throw new Error("Could not resolve uploads playlist for this channel.");
+  }
+  const thumbs = ch.snippet?.thumbnails || {};
+  const channelThumbUrl = thumbs.high?.url || thumbs.medium?.url || thumbs.default?.url || null;
+  const sc = ch.statistics?.subscriberCount;
+  let subscriberCount = sc != null && sc !== "" ? parseInt(String(sc), 10) : null;
+  if (Number.isNaN(subscriberCount)) subscriberCount = null;
+  return {
+    apiKey,
+    uploadsPlaylistId,
+    channelId: ch.id || null,
+    channelTitle: ch.snippet?.title || null,
+    channelThumbUrl,
+    subscriberCount,
+  };
+}
+
+async function getClientChannelContext() {
+  if (!clientChannelLoadPromise) {
+    clientChannelLoadPromise = loadClientChannelContext();
+  }
+  try {
+    return await clientChannelLoadPromise;
+  } catch (e) {
+    clientChannelLoadPromise = null;
+    throw e;
+  }
+}
+
+/** @param {unknown[]} items */
+function normalizePlaylistItems(items) {
+  return (items || [])
+    .map((item) => {
+      const it = /** @type {{ snippet?: Record<string, unknown>, contentDetails?: Record<string, unknown> }} */ (item);
+      const sn = it.snippet || {};
+      const resourceId = /** @type {{ videoId?: string }} */ (sn.resourceId);
+      const vid = resourceId?.videoId || /** @type {{ videoId?: string }} */ (it.contentDetails)?.videoId;
+      const thumbs = /** @type {Record<string, { url?: string }>} */ (sn.thumbnails) || {};
+      const thumb =
+        thumbs.maxres?.url || thumbs.high?.url || thumbs.medium?.url || thumbs.default?.url || "";
+      return {
+        id: typeof vid === "string" ? vid : "",
+        title: typeof sn.title === "string" ? sn.title : "Untitled",
+        description: typeof sn.description === "string" ? sn.description : "",
+        publishedAt: typeof sn.publishedAt === "string" ? sn.publishedAt : "",
+        thumbnail: thumb,
+      };
+    })
+    .filter((v) => v.id);
+}
+
+/** @param {string | undefined} iso */
+function parseIso8601DurationSeconds(iso) {
+  if (!iso || typeof iso !== "string") return null;
+  const m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  if (!m) return null;
+  const h = parseInt(m[1] || "0", 10);
+  const min = parseInt(m[2] || "0", 10);
+  const s = parseInt(m[3] || "0", 10);
+  return h * 3600 + min * 60 + s;
+}
+
+/**
+ * @param {ReturnType<typeof normalizePlaylistItems>} videos
+ * @param {string} apiKey
+ */
+async function enrichVideosClient(videos, apiKey) {
+  const ids = videos.map((v) => v.id).filter(Boolean);
+  if (!ids.length) return videos;
+  const u = new URL("https://www.googleapis.com/youtube/v3/videos");
+  u.searchParams.set("part", "snippet,contentDetails,statistics");
+  u.searchParams.set("id", ids.join(","));
+  u.searchParams.set("key", apiKey);
+  const r = await fetch(u.toString(), { headers: { Accept: "application/json" } });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) {
+    return videos.map((v) => ({
+      ...v,
+      durationSeconds: null,
+      viewCount: null,
+      liveBroadcastContent: "none",
+    }));
+  }
+  const byId = new Map();
+  for (const item of data.items || []) {
+    if (item && item.id) byId.set(item.id, item);
+  }
+  return videos.map((v) => {
+    const item = byId.get(v.id);
+    if (!item) {
+      return { ...v, durationSeconds: null, viewCount: null, liveBroadcastContent: "none" };
+    }
+    const cd = item.contentDetails || {};
+    const st = item.statistics || {};
+    const sn = item.snippet || {};
+    const vc = st.viewCount;
+    return {
+      ...v,
+      durationSeconds: parseIso8601DurationSeconds(cd.duration),
+      viewCount: vc != null && vc !== "" ? parseInt(String(vc), 10) : null,
+      liveBroadcastContent: sn.liveBroadcastContent || "none",
+    };
+  });
+}
+
+/**
+ * Direct YouTube Data API v3 (for static hosting where /api/videos is unavailable).
+ * @param {string | null} pageToken
+ */
+async function fetchPageFromYouTubeApi(pageToken) {
+  const ctx = await getClientChannelContext();
+  const maxResults = getClientMaxResults();
+  const u = new URL("https://www.googleapis.com/youtube/v3/playlistItems");
+  u.searchParams.set("part", "snippet,contentDetails");
+  u.searchParams.set("playlistId", ctx.uploadsPlaylistId);
+  u.searchParams.set("maxResults", String(maxResults));
+  u.searchParams.set("key", ctx.apiKey);
+  if (pageToken) u.searchParams.set("pageToken", pageToken);
+
+  const r = await fetch(u.toString(), { headers: { Accept: "application/json" } });
+  const text = await r.text();
+  let data = {};
+  try {
+    data = text ? JSON.parse(text) : {};
+  } catch {
+    throw new Error((text && text.slice(0, 160)) || r.statusText);
+  }
+  if (!r.ok) {
+    const err = data.error?.message || data.error || r.statusText;
+    throw new Error(typeof err === "string" ? err : JSON.stringify(err));
+  }
+  let videos = normalizePlaylistItems(data.items);
+  videos = await enrichVideosClient(videos, ctx.apiKey);
+  return {
+    channelTitle: ctx.channelTitle,
+    channelId: ctx.channelId,
+    channelThumbUrl: ctx.channelThumbUrl,
+    subscriberCount: ctx.subscriberCount,
+    videos,
+    nextPageToken: data.nextPageToken || null,
+  };
+}
+
 function setStatus(msg, temporaryMs) {
   if (statusClearTimer) {
     clearTimeout(statusClearTimer);
@@ -442,21 +630,28 @@ async function buildVideosFetchUrl(pageToken) {
 }
 
 async function fetchPage(pageToken) {
-  const res = await fetch(await buildVideosFetchUrl(pageToken), {
-    headers: { Accept: "application/json" },
-  });
-  const text = await res.text();
-  let data = {};
   try {
-    data = text ? JSON.parse(text) : {};
-  } catch {
-    throw new Error((text && text.slice(0, 160)) || res.statusText);
+    const res = await fetch(await buildVideosFetchUrl(pageToken), {
+      headers: { Accept: "application/json" },
+    });
+    const text = await res.text();
+    let data = {};
+    try {
+      data = text ? JSON.parse(text) : {};
+    } catch {
+      throw new Error((text && text.slice(0, 160)) || res.statusText);
+    }
+    if (!res.ok) {
+      const err = data.error || data.message || res.statusText;
+      throw new Error(typeof err === "string" ? err : JSON.stringify(err));
+    }
+    return data;
+  } catch (e) {
+    if (canUseClientYoutube()) {
+      return fetchPageFromYouTubeApi(pageToken);
+    }
+    throw e;
   }
-  if (!res.ok) {
-    const err = data.error || data.message || res.statusText;
-    throw new Error(typeof err === "string" ? err : JSON.stringify(err));
-  }
-  return data;
 }
 
 async function loadInitial() {
@@ -490,8 +685,13 @@ async function loadInitial() {
     renderGrid();
     loadMoreBtn.hidden = true;
     if (hintEl) {
-      hintEl.innerHTML =
-        "Could not reach <code>/api/videos</code>. In this folder run <code>npm run build</code> then keep <code>npm run serve</code> running (check the terminal for the port, e.g. 3000 or 3001). Reload this page. If it still fails, set <code>data-youtube-api-root=\"http://127.0.0.1:PORT\"</code> on <code>&lt;body&gt;</code> to match that port.";
+      if (canUseClientYoutube()) {
+        hintEl.innerHTML =
+          "YouTube returned an error. Check that <code>data-youtube-api-key</code> and your channel id/handle are correct, YouTube Data API v3 is enabled for the key, and the key’s HTTP referrer restriction includes this site’s URL.";
+      } else {
+        hintEl.innerHTML =
+          "<strong>Static hosting (e.g. haft-ug.com):</strong> there is no <code>/api/videos</code> on the server. Add <code>data-youtube-api-key</code> plus <code>data-youtube-channel-id</code> or <code>data-youtube-channel-handle</code> on <code>&lt;body&gt;</code> (same values as in your <code>.env</code> for local). In <a href=\"https://console.cloud.google.com/apis/credentials\" target=\"_blank\" rel=\"noopener noreferrer\">Google Cloud</a>, restrict the key to HTTP referrers such as <code>https://haft-ug.com/*</code>. <strong>Or</strong> host the Node app and set <code>data-youtube-api-root</code> to your API base URL. For local dev, run <code>npm run build</code> and <code>npm run serve</code>, or set <code>data-youtube-api-root=\"http://127.0.0.1:PORT\"</code>.";
+      }
     }
   } finally {
     loading = false;
