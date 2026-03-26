@@ -110,19 +110,6 @@ function applyActive(html, active, { homePath, pagePrefix }) {
     );
   };
 
-  const navYoutubeCta = (h) => {
-    const href = `${pagePrefix}youtube.html`;
-    const re = new RegExp(
-      `<a\\s+href="${reEsc(href)}"\\s+class="secondary-button pd-35 w-button nav-cta-youtube"\\s*>\\s*YouTube\\s*</a\\s*>`,
-    );
-    return replaceFirst(
-      h,
-      re,
-      `<a href="${href}" aria-current="page" class="secondary-button pd-35 w-button nav-cta-youtube w--current">YouTube</a>`,
-      `sync-layout: YouTube CTA not found`,
-    );
-  };
-
   const footLink = (h, segment, label) => {
     const href = `${pagePrefix}${segment}`;
     const re = new RegExp(
@@ -208,7 +195,6 @@ function applyActive(html, active, { homePath, pagePrefix }) {
     html = footLink(html, "fundraise.html", "Fundraise");
   } else if (active === "youtube") {
     html = navDrop(html, "youtube.html", "YouTube");
-    html = navYoutubeCta(html);
   } else if (active === "volunteers") {
     html = navDrop(html, "volunteers.html", "Volunteers");
     html = footLink(html, "volunteers.html", "Volunteers");

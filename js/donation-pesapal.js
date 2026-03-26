@@ -1,19 +1,18 @@
 (function () {
+  var PESAPAL_STORE_EMBED_SRC =
+    "https://store.pesapal.com/embed-code?pageUrl=https://store.pesapal.com/haftdonations";
+
   var form = document.getElementById("wf-form-Donation-Payment-Form");
   var wrap = document.getElementById("haft-pesapal-frame-wrap");
-  var iframe = document.getElementById("haft-pesapal-iframe");
-  if (!form || !wrap || !iframe) return;
-
-  var submitBtn =
-    document.getElementById("haft-donation-submit") ||
-    form.querySelector('input[type="submit"]');
+  var iframe = document.getElementById("haft-pesapal-embed-iframe");
+  if (!form || !wrap) return;
 
   function readField(id) {
     var el = document.getElementById(id);
     return el ? String(el.value || "").trim() : "";
   }
 
-  function runPesapalCheckout() {
+  function openPesapalStoreEmbed() {
     var amount = readField("Donation-Amount");
     var first = readField("Donation-First-Name");
     var last = readField("Donation-Last-Name");
@@ -30,40 +29,11 @@
       return;
     }
 
-    var donationType = "";
-    var radio = document.querySelector('input[name="Donation-Radio"]:checked');
-    if (radio) donationType = radio.value || "";
-
-    if (submitBtn) submitBtn.disabled = true;
-    fetch("/api/pesapal/init", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        amount: amount,
-        firstName: first,
-        lastName: last,
-        email: email,
-        phone: readField("Donation-Phone-Pesapal") || undefined,
-        donationType: donationType,
-      }),
-    })
-      .then(function (r) {
-        return r.json().then(function (data) {
-          if (!r.ok) throw new Error(data.error || r.statusText || "Request failed");
-          return data;
-        });
-      })
-      .then(function (data) {
-        iframe.src = data.iframeUrl;
-        wrap.style.display = "block";
-        wrap.scrollIntoView({ behavior: "smooth", block: "start" });
-      })
-      .catch(function (e) {
-        window.alert(e.message || "Could not start payment. Try again later.");
-      })
-      .finally(function () {
-        if (submitBtn) submitBtn.disabled = false;
-      });
+    if (iframe && !iframe.getAttribute("src")) {
+      iframe.setAttribute("src", PESAPAL_STORE_EMBED_SRC);
+    }
+    wrap.style.display = "block";
+    wrap.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   form.addEventListener(
@@ -71,7 +41,7 @@
     function (e) {
       e.preventDefault();
       e.stopImmediatePropagation();
-      runPesapalCheckout();
+      openPesapalStoreEmbed();
     },
     true,
   );

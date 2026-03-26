@@ -245,7 +245,7 @@
               class="nav-dropdown w-dropdown"
             >
               <div class="nav-menu-link w-dropdown-toggle">
-                <div>Pages</div>
+                <div>Haft</div>
                 <div class="nav-dropdown-icon w-icon-dropdown-toggle"></div>
               </div>
               <nav class="nav-dropdown-list w-dropdown-list">
@@ -276,10 +276,6 @@
           </div>
           <div class="nav-button-wrap">
             <a
-              href="youtube.html"
-              class="secondary-button pd-35 w-button nav-cta-youtube"
-              >YouTube</a
-            ><a
               href="donation.html"
               class="primary-button pd-35 w-button"
               >Donate Now</a
@@ -655,12 +651,13 @@
                     id="Donation-Form-Checkbox"
                     data-name="Donation Form Checkbox"
                     style="opacity: 0; position: absolute; z-index: -1"
-                  /><span
+                  /                  ><span
                     class="donation-checkbox-label w-form-label"
                     for="Donation-Form-Checkbox"
-                    >By submitting this form, you confirm the accuracy of the
-                    donation amount and authorize the payment processing via the
-                    link sent to your provided email address.</span
+                    >By continuing, you confirm your details are accurate and
+                    agree to complete your donation on HAFT’s secure Pesapal
+                    checkout (cards, mobile money, and other supported
+                    methods).</span
                   ></label
                 >
                 <div class="donation-form-button-wrap">
@@ -669,29 +666,33 @@
                     id="haft-donation-submit"
                     data-wait="Please wait..."
                     class="primary-button w-button"
-                    value="Donate Now to Empower Women"
+                    value="Continue to secure payment"
                   />
                 </div>
                 <div
                   id="haft-pesapal-frame-wrap"
-                  class="haft-pesapal-frame-wrap"
+                  class="haft-pesapal-frame-wrap haft-pesapal-embed-card"
                   style="display: none; margin-top: 28px"
                 >
-                  <p class="banner-subtitle" style="margin-bottom: 12px">
-                    Complete payment
+                  <p class="banner-subtitle" style="margin-bottom: 10px">
+                    Pay with Pesapal
                   </p>
-                  <iframe
-                    id="haft-pesapal-iframe"
-                    title="Secure payment — Pesapal"
-                    width="100%"
-                    height="700"
-                    style="
-                      min-height: 700px;
-                      border: 1px solid #e5ddce;
-                      border-radius: 12px;
-                      background: #fff;
-                    "
-                  ></iframe>
+                  <p class="haft-pesapal-embed-note">
+                    Use the button below to open our official HAFT donations
+                    store. Enter your gift amount there and choose your preferred
+                    payment method.
+                  </p>
+                  <div class="haft-pesapal-embed-inner">
+                    <iframe
+                      id="haft-pesapal-embed-iframe"
+                      class="haft-pesapal-store-iframe"
+                      title="Donate with Pesapal — HAFT Uganda"
+                      width="200"
+                      height="40"
+                      frameborder="0"
+                      allowfullscreen=""
+                    ></iframe>
+                  </div>
                 </div>
               </form>
               <div class="success-message w-form-done">
@@ -1027,9 +1028,9 @@
         <div class="donation-trust-card">
           <ul class="policy-list">
             <li>
-              <strong>100% secure payments</strong> — Stripe,
-              <strong>Pesapal</strong> (Mobile Money, cards, and more), and
-              other approved channels
+              <strong>Secure online giving</strong> — donations are processed
+              through <strong>Pesapal</strong> (cards, mobile money, and other
+              supported methods on our official store)
             </li>
             <li>
               <strong>Funds go to project implementation</strong> — aligned with
@@ -1540,7 +1541,6 @@
             <div class="footer-menu-list-wrap">
               <a href="donation-policy.html" class="footer-menu-link">Donation Policy</a
               ><a href="empower-women-sanitary-pad-project.html" class="footer-menu-link">Pad project campaign</a
-              ><a href="youtube.html" class="footer-menu-link">Youtube</a
               ><a href="../home.html" class="footer-menu-link">Careers</a
               ><a href="accountability.html" class="footer-menu-link">Accountability</a
               ><a href="medical-disclaimer.html" class="footer-menu-link">Medical Disclaimer</a>
@@ -1581,6 +1581,8 @@
     </div>
   </div>
 </section>
+
+
 
 
     <script
