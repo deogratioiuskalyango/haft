@@ -449,7 +449,9 @@ app.get("/api/videos", async (req, res) => {
 app.use(express.static(DIST, { extensions: ["html"] }));
 
 app.use((req, res) => {
-  res.status(404).send("Not found — run npm run build, then open /home.html or /pages/youtube.html");
+  res.status(404).send(
+    "Not found — run npm run build, then open / or /youtube/ (folder index.html layout).",
+  );
 });
 
 /**

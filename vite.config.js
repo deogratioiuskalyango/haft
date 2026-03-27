@@ -1,28 +1,49 @@
-import { readdirSync } from "node:fs";
+import { existsSync, readdirSync, statSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig, loadEnv } from "vite";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-/** All root + pages/*.html entries for multi-page static build */
+const SKIP_DIRS = new Set([
+  "css",
+  "dist",
+  "images",
+  "js",
+  "lib",
+  "node_modules",
+  "partials",
+  "public",
+  "scripts",
+  "wpforms-pro-v1.8.7.2",
+]);
+
+/** Root index + every {slug}/index.html (and home/index redirect) for multi-page build */
 function htmlInputs() {
   const input = {
     index: resolve(__dirname, "index.html"),
-    home: resolve(__dirname, "home.html"),
   };
-  const pagesDir = resolve(__dirname, "pages");
-  for (const file of readdirSync(pagesDir)) {
-    if (file.endsWith(".html")) {
-      const base = file.replace(/\.html$/, "");
-      input[`pages/${base}`] = resolve(pagesDir, file);
+  const homeIdx = resolve(__dirname, "home", "index.html");
+  if (existsSync(homeIdx)) {
+    input["home/index"] = homeIdx;
+  }
+  for (const name of readdirSync(__dirname)) {
+    if (SKIP_DIRS.has(name)) continue;
+    const dir = resolve(__dirname, name);
+    try {
+      if (!statSync(dir).isDirectory()) continue;
+    } catch {
+      continue;
+    }
+    const idx = resolve(dir, "index.html");
+    if (existsSync(idx)) {
+      input[`${name}/index`] = idx;
     }
   }
   return input;
 }
 
 export default defineConfig(({ mode }) => {
-  // Makes VITE_* from .env / .env.[mode] available to config if you need them here later
   loadEnv(mode, __dirname, "");
 
   const input = htmlInputs();

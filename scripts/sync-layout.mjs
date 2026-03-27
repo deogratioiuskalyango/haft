@@ -1,6 +1,7 @@
 /**
  * Replaces <section class="header-section"> and <section class="footer-section">
  * in all site HTML from partials/header.html and partials/footer.html.
+ * Expects index.html at site root and one section per folder as {slug}/index.html.
  * Run from project root: node scripts/sync-layout.mjs
  */
 import fs from "fs";
@@ -17,26 +18,42 @@ const FOOTER_RE = /<section class="footer-section">[\s\S]*?<\/section>/;
 const ASSET_ROOT = "images/";
 const ASSET_NESTED = "../images/";
 
-/** Nav highlight: flat pages/*.html basename -> logical section */
-const FILE_TO_ACTIVE = {
-  "about.html": "about",
-  "events.html": "events",
-  "causes.html": "causes",
-  "contact.html": "contact",
-  "volunteers.html": "volunteers",
-  "blog.html": "blog",
-  "blog-detail.html": "blog",
-  "donation.html": "donation",
-  "empower-women-sanitary-pad-project.html": "donation",
-  "fundraise.html": "fundraise",
-  "youtube.html": "youtube",
-  "event-detail.html": "events",
-  "cause-clean-water.html": "causes",
-  "donation-policy.html": "donation-policy",
-  "medical-disclaimer.html": "medical-disclaimer",
-  "accountability.html": "accountability",
-  "terms-and-conditions.html": "terms-and-conditions",
-  "privacypolicy.html": "privacy-policy",
+/** Skip when scanning for layout HTML (not content pages) */
+const SKIP_LAYOUT_SCAN = new Set([
+  "css",
+  "dist",
+  "home",
+  "images",
+  "js",
+  "lib",
+  "node_modules",
+  "pages",
+  "partials",
+  "public",
+  "scripts",
+  "wpforms-pro-v1.8.7.2",
+]);
+
+/** Folder name (parent of index.html) -> nav highlight key */
+const FOLDER_TO_ACTIVE = {
+  about: "about",
+  events: "events",
+  causes: "causes",
+  contact: "contact",
+  volunteers: "volunteers",
+  blog: "blog",
+  "blog-detail": "blog",
+  donation: "donation",
+  "empower-women-sanitary-pad-project": "donation",
+  fundraise: "fundraise",
+  youtube: "youtube",
+  "event-detail": "events",
+  "cause-clean-water": "causes",
+  "donation-policy": "donation-policy",
+  "medical-disclaimer": "medical-disclaimer",
+  accountability: "accountability",
+  "terms-and-conditions": "terms-and-conditions",
+  privacypolicy: "privacy-policy",
 };
 
 function fillTemplate(template, vars) {
@@ -63,7 +80,7 @@ function applyActive(html, active, { homePath, pagePrefix }) {
     return html;
   }
 
-  const contactHref = `${pagePrefix}contact.html`;
+  const contactHref = `${pagePrefix}contact/`;
 
   const markOpen = (h, from, to) => {
     if (!h.includes(from)) {
@@ -165,14 +182,14 @@ function applyActive(html, active, { homePath, pagePrefix }) {
   }
 
   if (active === "about") {
-    html = navMain(html, "about.html", "About");
-    html = footLink(html, "about.html", "About");
+    html = navMain(html, "about/", "About");
+    html = footLink(html, "about/", "About");
   } else if (active === "events") {
-    html = navMain(html, "events.html", "Events");
-    html = footLink(html, "events.html", "Events");
+    html = navMain(html, "events/", "Events");
+    html = footLink(html, "events/", "Events");
   } else if (active === "causes") {
-    html = navMain(html, "causes.html", "Causes");
-    html = footLink(html, "causes.html", "Causes");
+    html = navMain(html, "causes/", "Causes");
+    html = footLink(html, "causes/", "Causes");
   } else if (active === "contact") {
     const re = new RegExp(
       `<a\\s+href="${reEsc(contactHref)}"\\s+class="nav-menu-link w-nav-link"\\s*>\\s*Contact\\s*</a\\s*>`,
@@ -183,45 +200,50 @@ function applyActive(html, active, { homePath, pagePrefix }) {
       `<a href="${contactHref}" aria-current="page" class="nav-menu-link w-nav-link w--current">Contact</a>`,
       `sync-layout: nav Contact link not found`,
     );
-    html = footLink(html, "contact.html", "Contact");
+    html = footLink(html, "contact/", "Contact");
   } else if (active === "blog") {
-    html = navDrop(html, "blog.html", "Blog");
-    html = footLink(html, "blog.html", "Blog");
+    html = navDrop(html, "blog/", "Blog");
+    html = footLink(html, "blog/", "Blog");
   } else if (active === "donation") {
-    html = navDrop(html, "donation.html", "Donation");
-    html = footLink(html, "donation.html", "Donation");
+    html = navDrop(html, "donation/", "Donation");
+    html = footLink(html, "donation/", "Donation");
   } else if (active === "fundraise") {
-    html = navDrop(html, "fundraise.html", "Fundraise");
-    html = footLink(html, "fundraise.html", "Fundraise");
+    html = navDrop(html, "fundraise/", "Fundraise");
+    html = footLink(html, "fundraise/", "Fundraise");
   } else if (active === "youtube") {
-    html = navDrop(html, "youtube.html", "YouTube");
+    html = navDrop(html, "youtube/", "YouTube");
   } else if (active === "volunteers") {
-    html = navDrop(html, "volunteers.html", "Volunteers");
-    html = footLink(html, "volunteers.html", "Volunteers");
+    html = navDrop(html, "volunteers/", "Volunteers");
+    html = footLink(html, "volunteers/", "Volunteers");
   } else if (active === "donation-policy") {
-    html = footLink(html, "donation-policy.html", "Donation Policy");
+    html = footLink(html, "donation-policy/", "Donation Policy");
   } else if (active === "medical-disclaimer") {
-    html = footLink(html, "medical-disclaimer.html", "Medical Disclaimer");
+    html = footLink(html, "medical-disclaimer/", "Medical Disclaimer");
   } else if (active === "accountability") {
-    html = footLink(html, "accountability.html", "Accountability");
+    html = footLink(html, "accountability/", "Accountability");
   } else if (active === "terms-and-conditions") {
     html = copyrightLink(
       html,
-      "terms-and-conditions.html",
+      "terms-and-conditions/",
       "Terms &amp; Condition",
     );
   } else if (active === "privacy-policy") {
-    html = copyrightLink(html, "privacypolicy.html", "Privacy Policy");
+    html = copyrightLink(html, "privacypolicy/", "Privacy Policy");
   }
 
   return html;
 }
 
-function buildLayout(active, isRoot) {
-  const homePath = isRoot ? "home.html" : "../home.html";
-  const pagePrefix = isRoot ? "pages/" : "";
-  const assetPrefix = isRoot ? ASSET_ROOT : ASSET_NESTED;
+function layoutVarsForFile(filePath) {
+  const rel = path.relative(ROOT, filePath).replace(/\\/g, "/");
+  const isRootIndex = rel === "index.html";
+  const homePath = isRootIndex ? "./" : "../";
+  const pagePrefix = isRootIndex ? "" : "../";
+  const assetPrefix = isRootIndex ? ASSET_ROOT : ASSET_NESTED;
+  return { homePath, pagePrefix, assetPrefix, isRootIndex };
+}
 
+function buildLayout(active, { homePath, pagePrefix, assetPrefix }) {
   const vars = { HOME_PATH: homePath, PAGE_PREFIX: pagePrefix, ASSET_PREFIX: assetPrefix };
 
   let header = fillTemplate(
@@ -245,15 +267,31 @@ function buildLayout(active, isRoot) {
   return { header, footer };
 }
 
-function processFile(filePath) {
-  const isRoot = path.basename(filePath) === "home.html";
-  let active = "home";
-  if (!isRoot) {
-    const base = path.basename(filePath);
-    active = FILE_TO_ACTIVE[base] || "none";
+function activeForFile(filePath) {
+  const rel = path.relative(ROOT, filePath).replace(/\\/g, "/");
+  if (rel === "index.html") return "home";
+  const parts = rel.split("/");
+  if (parts.length === 2 && parts[1] === "index.html") {
+    return FOLDER_TO_ACTIVE[parts[0]] || "none";
   }
+  return "none";
+}
 
-  const { header, footer } = buildLayout(active, isRoot);
+function collectLayoutTargets() {
+  const files = [path.join(ROOT, "index.html")];
+  for (const ent of fs.readdirSync(ROOT, { withFileTypes: true })) {
+    if (!ent.isDirectory() || SKIP_LAYOUT_SCAN.has(ent.name)) continue;
+    const idx = path.join(ROOT, ent.name, "index.html");
+    if (fs.existsSync(idx)) files.push(idx);
+  }
+  return files;
+}
+
+function processFile(filePath) {
+  const { homePath, pagePrefix, assetPrefix } = layoutVarsForFile(filePath);
+  const active = activeForFile(filePath);
+
+  const { header, footer } = buildLayout(active, { homePath, pagePrefix, assetPrefix });
   let html = fs.readFileSync(filePath, "utf8");
 
   if (!HEADER_RE.test(html)) {
@@ -266,18 +304,15 @@ function processFile(filePath) {
   html = html.replace(HEADER_RE, header);
   html = html.replace(FOOTER_RE, footer);
   fs.writeFileSync(filePath, html, "utf8");
-  console.log("Updated:", path.relative(ROOT, filePath), active === "none" ? "(no nav highlight)" : `[nav: ${active}]`);
+  console.log(
+    "Updated:",
+    path.relative(ROOT, filePath),
+    active === "none" ? "(no nav highlight)" : `[nav: ${active}]`,
+  );
 }
 
 function main() {
-  const pagesDir = path.join(ROOT, "pages");
-  const pageFiles = fs
-    .readdirSync(pagesDir)
-    .filter((f) => f.endsWith(".html"))
-    .map((f) => path.join(pagesDir, f));
-
-  processFile(path.join(ROOT, "home.html"));
-  for (const p of pageFiles) {
+  for (const p of collectLayoutTargets()) {
     processFile(p);
   }
   console.log("sync-layout: done.");

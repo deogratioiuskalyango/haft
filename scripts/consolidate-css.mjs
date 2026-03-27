@@ -16,12 +16,27 @@ const SRC_MAIN = path.join(
 const SRC_HAFT = path.join(ROOT, "66a8bc9010054ff044b7ed6b/css/haft-locations.css");
 const DEST_DIR = path.join(ROOT, "css");
 
+const WALK_SKIP = new Set([
+  "node_modules",
+  "dist",
+  "css",
+  "js",
+  "images",
+  "lib",
+  "partials",
+  "public",
+  "scripts",
+  "wpforms-pro-v1.8.7.2",
+]);
+
 function walkHtml(dir, out = []) {
   if (!fs.existsSync(dir)) return out;
   for (const name of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, name.name);
-    if (name.isDirectory()) walkHtml(full, out);
-    else if (name.name.endsWith(".html")) out.push(full);
+    if (name.isDirectory()) {
+      if (WALK_SKIP.has(name.name) || name.name.startsWith(".")) continue;
+      walkHtml(full, out);
+    } else if (name.name.endsWith(".html")) out.push(full);
   }
   return out;
 }
@@ -38,15 +53,17 @@ fs.writeFileSync(
 );
 fs.copyFileSync(SRC_HAFT, path.join(DEST_DIR, "haft-locations.css"));
 
-const homePath = path.join(ROOT, "home.html");
-let home = fs.readFileSync(homePath, "utf8");
-home = home.replaceAll(
-  "href=\"66a8bc9010054ff044b7ed6b/css/",
-  'href="css/',
-);
-fs.writeFileSync(homePath, home, "utf8");
+const indexPath = path.join(ROOT, "index.html");
+if (fs.existsSync(indexPath)) {
+  let home = fs.readFileSync(indexPath, "utf8");
+  home = home.replaceAll(
+    'href="66a8bc9010054ff044b7ed6b/css/',
+    'href="css/',
+  );
+  fs.writeFileSync(indexPath, home, "utf8");
+}
 
-const pageFiles = walkHtml(path.join(ROOT, "pages"));
+const pageFiles = walkHtml(ROOT).filter((p) => p !== indexPath);
 for (const p of pageFiles) {
   let html = fs.readFileSync(p, "utf8");
   const before = html;
@@ -82,14 +99,18 @@ for (const name of ["kindflow-template.webflow.33ae4aea2.css", "haft-locations.c
 }
 rmDirIfEmpty(oldCssDir);
 
-for (const name of fs.readdirSync(path.join(ROOT, "pages"))) {
-  const cssDir = path.join(ROOT, "pages", name, "css");
-  if (!fs.statSync(path.join(ROOT, "pages", name)).isDirectory()) continue;
-  if (!fs.existsSync(cssDir)) continue;
-  for (const f of fs.readdirSync(cssDir)) {
-    fs.unlinkSync(path.join(cssDir, f));
+const legacyPages = path.join(ROOT, "pages");
+if (fs.existsSync(legacyPages)) {
+  for (const name of fs.readdirSync(legacyPages)) {
+    const sub = path.join(legacyPages, name);
+    const cssDir = path.join(sub, "css");
+    if (!fs.statSync(sub).isDirectory()) continue;
+    if (!fs.existsSync(cssDir)) continue;
+    for (const f of fs.readdirSync(cssDir)) {
+      fs.unlinkSync(path.join(cssDir, f));
+    }
+    fs.rmdirSync(cssDir);
   }
-  fs.rmdirSync(cssDir);
 }
 
 console.log("consolidate-css: done. Root css/ is the single source.");
