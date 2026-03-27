@@ -11,6 +11,7 @@
 
 import express from "express";
 import dotenv from "dotenv";
+import { Resend } from "resend";
 import http from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -19,9 +20,10 @@ import {
   buildPesapalQueryPaymentStatusUrl,
 } from "./lib/pesapal-oauth.js";
 
-dotenv.config();
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+/** Load `.env` next to server.js — not from process.cwd() (fixes missing RESEND_FROM_EMAIL → onboarding fallback). */
+dotenv.config({ path: path.join(__dirname, ".env") });
+
 const app = express();
 
 const PORT = parseInt(process.env.PORT, 10) || 3000;
@@ -52,6 +54,54 @@ const PESAPAL_QUERY_API =
   (PESAPAL_SANDBOX
     ? "http://demo.pesapal.com/api/querypaymentstatus"
     : "https://www.pesapal.com/api/querypaymentstatus");
+
+/** Contact form (Resend API) — see .env.example */
+const RESEND_API_KEY = process.env.RESEND_API_KEY?.trim();
+const RESEND_FROM_EMAIL =
+  process.env.RESEND_FROM_EMAIL?.trim() || "onboarding@resend.dev";
+const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL?.trim() || "info@haft-ug.com";
+
+/** @type {Resend | null} */
+let resendClient = null;
+
+function resendContactConfigured() {
+  if (!RESEND_API_KEY || RESEND_API_KEY.length <= 8) return false;
+  if (RESEND_API_KEY === "re_xxxxxxxxx") return false;
+  return true;
+}
+
+function getResend() {
+  if (!resendContactConfigured()) return null;
+  if (!resendClient) resendClient = new Resend(RESEND_API_KEY);
+  return resendClient;
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+/** @param {unknown} err */
+function resendErrorText(err) {
+  if (err == null) return "";
+  if (typeof err === "string") return err;
+  if (typeof err === "object" && err !== null && "message" in err) {
+    const m = /** @type {{ message?: string }} */ (err).message;
+    if (typeof m === "string" && m.trim()) return m.trim();
+  }
+  try {
+    return JSON.stringify(err);
+  } catch {
+    return String(err);
+  }
+}
+
+function resendOnboardingSender() {
+  return /resend\.dev$/i.test(RESEND_FROM_EMAIL) || /onboarding@/i.test(RESEND_FROM_EMAIL);
+}
 
 function pesapalConfigured() {
   return Boolean(PESAPAL_CONSUMER_KEY && PESAPAL_CONSUMER_SECRET && PESAPAL_CALLBACK_URL);
@@ -397,6 +447,103 @@ app.get("/api/pesapal/ipn", async (req, res) => {
   }
 });
 
+app.options("/api/contact", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
+  res.status(204).end();
+});
+
+app.post("/api/contact", express.json({ limit: "48kb" }), async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+
+  if (!resendContactConfigured()) {
+    return res.status(503).json({
+      ok: false,
+      error:
+        "Contact email is not configured. Set RESEND_API_KEY in the server environment (see .env.example).",
+    });
+  }
+
+  const body = req.body || {};
+  const name = String(body.name || "").trim();
+  const email = String(body.email || "").trim();
+  const phone = String(body.phone || "").trim();
+  const subject = String(body.subject || "").trim();
+  const message = String(body.message || "").trim();
+
+  if (!name || name.length > 200) {
+    return res.status(400).json({ ok: false, error: "Please enter your name." });
+  }
+  if (!email || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return res.status(400).json({ ok: false, error: "Please enter a valid email address." });
+  }
+  if (!message || message.length > 15000) {
+    return res.status(400).json({ ok: false, error: "Please enter a message." });
+  }
+
+  const resend = getResend();
+  if (!resend) {
+    return res.status(503).json({ ok: false, error: "Mail client is not available." });
+  }
+
+  const subj = subject
+    ? `[HAFT Contact] ${subject.replace(/[\r\n]/g, " ").slice(0, 200)}`
+    : "[HAFT Contact] Website inquiry";
+
+  const text =
+    `Name: ${name}\n` +
+    `Email: ${email}\n` +
+    `Phone: ${phone || "(not provided)"}\n\n` +
+    `Message:\n${message}\n`;
+
+  const html = `
+<p><strong>Name:</strong> ${escapeHtml(name)}</p>
+<p><strong>Email:</strong> ${escapeHtml(email)}</p>
+<p><strong>Phone:</strong> ${escapeHtml(phone || "(not provided)")}</p>
+<p><strong>Message:</strong></p>
+<p style="white-space:pre-wrap">${escapeHtml(message)}</p>
+`.trim();
+
+  try {
+    const { error } = await resend.emails.send({
+      from: RESEND_FROM_EMAIL,
+      to: CONTACT_TO_EMAIL,
+      replyTo: email,
+      subject: subj,
+      text,
+      html,
+    });
+
+    if (error) {
+      const detail = resendErrorText(error);
+      console.error("[contact resend] Resend API error:", detail, error);
+      let hint = "";
+      if (resendOnboardingSender()) {
+        hint =
+          " With onboarding@resend.dev, Resend only delivers to your own signup email until you verify a domain in Resend — set CONTACT_TO_EMAIL in .env to that address, or verify haft-ug.com and use noreply@yourdomain as RESEND_FROM_EMAIL.";
+      }
+      return res.status(502).json({
+        ok: false,
+        error: detail
+          ? `Resend: ${detail}${hint}`
+          : `Could not send email.${hint} Check RESEND_API_KEY and the server terminal log.`,
+      });
+    }
+
+    res.json({ ok: true });
+  } catch (e) {
+    console.error("[contact resend] Exception:", e);
+    const msg = e instanceof Error ? e.message : String(e);
+    res.status(502).json({
+      ok: false,
+      error: msg
+        ? `Could not send email: ${msg}`
+        : "Could not send email. Please try again later.",
+    });
+  }
+});
+
 app.get("/api/videos", async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
 
@@ -476,6 +623,17 @@ function startServer(port, attemptsLeft = 30) {
     console.log(
       `  Pesapal: ${pesapalConfigured() ? `enabled (${PESAPAL_SANDBOX ? "sandbox" : "live"})` : "not configured"}`,
     );
+    console.log(
+      `  Contact form: ${resendContactConfigured() ? "Resend ready" : "not configured (set RESEND_API_KEY)"}`,
+    );
+    if (resendContactConfigured()) {
+      console.log(`  Resend sender (from): ${RESEND_FROM_EMAIL}`);
+    }
+    if (resendContactConfigured() && resendOnboardingSender()) {
+      console.warn(
+        `  [contact] Test sender "${RESEND_FROM_EMAIL}" — Resend usually only sends to your account email until a domain is verified. CONTACT_TO_EMAIL=${CONTACT_TO_EMAIL}`,
+      );
+    }
   });
 }
 

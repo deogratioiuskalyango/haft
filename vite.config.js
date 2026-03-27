@@ -44,12 +44,26 @@ function htmlInputs() {
 }
 
 export default defineConfig(({ mode }) => {
-  loadEnv(mode, __dirname, "");
+  const env = loadEnv(mode, __dirname, "");
+  const parsedPort = parseInt(String(env.PORT || "3000"), 10);
+  const apiPort = Number.isFinite(parsedPort) && parsedPort > 0 ? parsedPort : 3000;
+  const apiProxyTarget = `http://127.0.0.1:${apiPort}`;
 
   const input = htmlInputs();
 
   return {
     root: __dirname,
+    /** Forward /api/* to Express (server.js) so contact + Pesapal + YouTube work during dev/preview */
+    server: {
+      proxy: {
+        "/api": { target: apiProxyTarget, changeOrigin: true },
+      },
+    },
+    preview: {
+      proxy: {
+        "/api": { target: apiProxyTarget, changeOrigin: true },
+      },
+    },
     build: {
       rollupOptions: {
         input,
